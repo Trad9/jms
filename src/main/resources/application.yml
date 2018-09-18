@@ -1,0 +1,23 @@
+spring:
+  activemq:
+    broker-url: vm://localhost?broker.persistent=false,broker.useJmx=true,useShutdownHook=false
+    in-memory: true
+    non-blocking-redelivery: true
+    broker:
+      input:
+        url: tcp://localhost:5151
+        queue: inputQueue
+      output:
+        url: tcp://localhost:5152
+        queue: outputTopic
+  application:
+    name: jmsTestService
+
+server:
+  port: 8095
+
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/

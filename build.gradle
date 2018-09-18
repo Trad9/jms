@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+jar {
+	enabled = true
+}
+
+bootJar {
+	classifier = 'boot'
+	manifest {
+		attributes 'Start-Class': 'kn.swiftlog.tst.jms.JmsApplication'
+	}
+	launchScript()
+}
+
+springBoot {
+    mainClassName = 'kn.swiftlog.tst.jms.JmsApplication'
+}
+
+group = 'kn.swiftlog.tst'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-activemq')
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}
